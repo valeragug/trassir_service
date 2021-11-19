@@ -5,8 +5,11 @@ from django.http import HttpResponse
 import socket
 import datetime
 
+
 def index(request):
-	return HttpResponse("Сервис работает")
+    return HttpResponse("Сервис работает")
+
+
 def bos(request):
     # Разбираем получаемую строку на переменные
     # Получаем номер билета
@@ -49,8 +52,8 @@ def bos(request):
         minutes = ''.join(DateTime[11:13])
         sec = ''.join(DateTime[13:15])
         time = hour + ':' + minutes + ':' + sec
-        text = b"<?xml version=\"1.0\" encoding=\"utf-8\"?><transaction><event_type>POSNG_ACTION</event_type><operation_id>" + media.encode(
-            'utf-8') + b"</operation_id><cashier>Ivanov I</cashier><date>" + date.encode(
+        text = b"<?xml version=\"1.0\" encoding=\"utf-8\"?><transaction><event_type>POSNG_ACTION</event_type><operation_id>" + date.encode(
+            'utf-8') + b"_"+time.encode('utf-8') + b"</operation_id><cashier>Rosa Khutor</cashier><date>" + date.encode(
             'utf-8') + b"</date><time>" + time.encode(
             'utf-8') + b"</time><position></position><quantity></quantity><weight></weight><price></price><article></article><barcode>" + media.encode(
             'utf-8') + b"</barcode><text>[Gate #" + DeviceCode.encode('utf-8') + b"] - " + media.encode(
